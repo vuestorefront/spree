@@ -5,13 +5,29 @@
         <SfSteps
           v-if="!isThankYou"
           :active="currentStepIndex"
-          :class="{ 'checkout__steps': true }"
+          class="checkout__steps"
+          ref="stepsRef"
           @change="handleStepClick"
         >
+          <template #steps={step}>
+            <SfButton
+              :key="steps[step.index].key"
+              class="sf-button--pure sf-steps__step"
+              :class="{
+                'is-done': steps[step.index].done,
+                'current': steps[step.index].current,
+                'is-disabled': steps[step.index].disabled,
+              }"
+              data-testid="steps-button"
+              @click="handleStepClick(step.index)"
+            >
+              <span class="sf-steps__title">{{ steps[step.index].name }}</span>
+            </SfButton>
+          </template>
           <SfStep
-            v-for="(step, key) in STEPS"
+            v-for="({key, name}) in steps"
             :key="key"
-            :name="step"
+            :name="name"
           >
             <nuxt-child />
           </SfStep>
@@ -33,13 +49,9 @@
 
 import { SfSteps, SfButton } from '@storefront-ui/vue';
 import CartPreview from '~/components/Checkout/CartPreview';
-import { computed, useRoute, useRouter } from '@nuxtjs/composition-api';
+import { ref, computed, useRoute, useRouter } from '@nuxtjs/composition-api';
 
-const STEPS = {
-  shipping: 'Shipping',
-  billing: 'Billing',
-  payment: 'Payment'
-};
+const STEP_KEYS = ['shipping', 'billing', 'payment'];
 
 export default {
   name: 'Checkout',
@@ -51,21 +63,32 @@ export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const currentStep = computed(() => route.value.path.split('/').pop());
-    const currentStepIndex = computed(() => Object.keys(STEPS).findIndex(s => s === currentStep.value));
-    const isThankYou = computed(() => currentStep.value === 'thank-you');
+    const currentStepKey = computed(() => route.value.path.split('/').pop());
+    const currentStepIndex = computed(() => STEP_KEYS.findIndex(key => key === currentStepKey.value));
+    const isThankYou = computed(() => currentStepKey.value === 'thank-you');
+    const stepsRef = ref(null);
+    const steps = computed(() => STEP_KEYS.map((key, index) => ({
+      key,
+      name: key.toUpperCase(),
+      disabled:
+          (stepsRef.value?.$options?.propsData?.canGoBack && index < currentStepIndex.value) ||
+          index > currentStepIndex.value,
+      done: index < currentStepIndex.value,
+      current: index === currentStepIndex.value
+    })));
 
     const handleStepClick = (stepIndex) => {
-      const key = Object.keys(STEPS)[stepIndex];
+      const { key, disabled } = steps.value[stepIndex];
+      if (disabled) return;
       router.push(`/checkout/${key}`);
     };
 
     return {
       handleStepClick,
-      STEPS,
+      steps,
       currentStepIndex,
       isThankYou,
-      currentStep
+      stepsRef
     };
   }
 };
@@ -103,6 +126,15 @@ export default {
 
     &-auth::v-deep .sf-steps__step:first-child {
       --steps-step-color: #e8e4e4;
+    }
+  }
+  .sf-steps__step {
+    &.is-done {
+      cursor: pointer;
+    }
+    &.is-disabled {
+      --steps-step-color: var(--c-text-disabled);
+      cursor: default;
     }
   }
 }
