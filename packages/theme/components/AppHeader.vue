@@ -1,5 +1,6 @@
 <template>
   <div>
+    <SfOverlay :visible="isSearchOpen" />
     <SfHeader
       class="sf-header--has-mobile-search"
       :class="{'header-on-top': isSearchOpen}"
@@ -64,7 +65,7 @@
           :value="term"
           @input="handleSearch"
           @keydown.enter="handleSearch($event)"
-          @focus="isSearchOpen = true"
+          @focus="openSearch"
           @keydown.esc="closeSearch"
           v-click-outside="closeSearch"
         >
@@ -83,7 +84,7 @@
               v-else
               aria-label="Open search"
               class="sf-search-bar__button sf-button--pure"
-              @click="isSearchOpen ? isSearchOpen = false : isSearchOpen = true"
+              @click="isSearchOpen ? closeSearch() : openSearch()"
             >
               <span class="sf-search-bar__icon">
                 <SfIcon color="var(--c-text)" size="20px" icon="search" />
@@ -100,7 +101,6 @@
       @close="closeSearch"
       @removeSearchResults="removeSearchResults"
     />
-    <SfOverlay :visible="isSearchOpen" />
   </div>
 </template>
 
@@ -166,10 +166,12 @@ export default {
       toggleLoginModal();
     };
 
+    const openSearch = () => {
+      isSearchOpen.value = true;
+    };
+
     const closeSearch = () => {
-      const wishlistClassName = 'sf-product-card__wishlist-icon';
-      const isWishlistIconClicked = event.path.find(p => wishlistClassName.search(p.className) > 0);
-      if (isWishlistIconClicked || !isSearchOpen.value) return;
+      if (!isSearchOpen.value) return;
 
       term.value = '';
       isSearchOpen.value = false;
@@ -196,7 +198,9 @@ export default {
     watch(() => term.value, (newVal, oldVal) => {
       const shouldSearchBeOpened = (!isMobile.value && term.value.length > 0) && ((!oldVal && newVal) || (newVal.length !== oldVal.length && isSearchOpen.value === false));
       if (shouldSearchBeOpened) {
-        isSearchOpen.value = true;
+        openSearch();
+      } else {
+        closeSearch();
       }
     });
 
@@ -220,6 +224,7 @@ export default {
       term,
       isSearchOpen,
       closeSearch,
+      openSearch,
       handleSearch,
       result,
       closeOrFocusSearchBar,
@@ -236,6 +241,9 @@ export default {
 <style lang="scss" scoped>
 .sf-header {
   --header-padding:  var(--spacer-sm);
+  &:not(.is-sticky) {
+    --header-wrapper-position: relative;
+  }
   @include for-desktop {
     --header-padding: 0;
   }
@@ -252,7 +260,6 @@ export default {
     display: none;
   }
 }
-
 .cart-badge {
   position: absolute;
   bottom: 40%;
