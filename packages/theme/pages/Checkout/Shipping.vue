@@ -106,32 +106,6 @@
           />
         </ValidationProvider>
         <ValidationProvider
-          v-if="states && states.length > 0"
-          v-slot="{ errors }"
-          name="state"
-          rules="required"
-          slim
-        >
-          <SfSelect
-            data-cy="shipping-details-input_state"
-            class="form__element form form__select sf-select--underlined"
-            v-model="form.state"
-            name="state"
-            label="State/Province"
-            :required="isStateRequired"
-            :valid="!errors[0]"
-            :errorMessage="errors[0]"
-          >
-            <SfSelectOption
-              v-for="{ code, name } in states"
-              :key="code"
-              :value="name"
-            >
-              {{ name }}
-            </SfSelectOption>
-          </SfSelect>
-        </ValidationProvider>
-        <ValidationProvider
           name="country"
           rules="required|min:2"
           v-slot="{ errors }"
@@ -172,6 +146,32 @@
             :valid="!errors[0]"
             :errorMessage="errors[0]"
           />
+        </ValidationProvider>
+        <ValidationProvider
+          v-if="states && states.length > 0"
+          v-slot="{ errors }"
+          name="state"
+          rules="required"
+          slim
+        >
+          <SfSelect
+            data-cy="shipping-details-input_state"
+            class="form__element form form__select sf-select--underlined"
+            v-model="form.state"
+            name="state"
+            label="State/Province"
+            :required="isStateRequired"
+            :valid="!errors[0]"
+            :errorMessage="errors[0]"
+          >
+            <SfSelectOption
+              v-for="{ code, name } in states"
+              :key="code"
+              :value="name"
+            >
+              {{ name }}
+            </SfSelectOption>
+          </SfSelect>
         </ValidationProvider>
         <ValidationProvider
           name="phone"
