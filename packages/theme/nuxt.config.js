@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import theme from './themeConfig';
+import { excludeRoutes } from './helpers/excludeRoutes';
 
 export default {
   ssr: true,
@@ -135,9 +136,8 @@ export default {
             currencyDefault: 'EUR'
           }
         }
-      },
-    },
-    detectBrowserLanguage: false
+      }
+    }
   },
   pwa: {
     meta: {
@@ -182,6 +182,13 @@ export default {
       } else {
         return { x: 0, y: 0 };
       }
+    },
+    extendRoutes(routes) {
+      routes = excludeRoutes(routes, [
+        'MyAccount/MyNewsletter',
+        'MyAccount/ShippingDetails',
+        'MyAccount/BillingDetails'
+      ]);
     }
   },
   publicRuntimeConfig: {
