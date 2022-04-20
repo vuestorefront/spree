@@ -2,6 +2,8 @@ import { CmsSection, Page } from '../../types';
 
 export const deserializeCmsSection = (cmsSections): CmsSection[] => {
   return cmsSections.map(section => ({
+    sectionId: section.id,
+    type: section.attributes.type,
     rteContent: section.attributes.content.rte_content,
     title: section.attributes.content.title,
     subtitle: section.attributes.content.subtitle,

@@ -1,34 +1,43 @@
 <template>
   <div>
-    <h2>{{ pageTitle }}</h2>
-    <div v-html="content" />
+    <SfHeading :title="contentGetters.getPageTitle(contentPage)" :level="2" />
+    <div
+      v-if="contentGetters.isStandardPage(contentPage)"
+      v-html="contentGetters.getPageContent(contentPage)"
+    />
+    <div v-else>
+      <component
+        v-for="section in contentPage.cmsSections"
+        :key="`content-section-${section.sectionId}`"
+        :is="contentGetters.getSectionComponentName(section)"
+        :section="section"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { onMounted, useRoute, computed } from '@nuxtjs/composition-api';
 import { useContent, contentGetters } from '@vue-storefront/spree';
+import { SfHeading } from '@storefront-ui/vue';
 
 export default {
+  components: {
+    SfHeading
+  },
   setup() {
     const route = useRoute();
     const { content: contentPage, search: searchContentPage } = useContent();
 
     const pageSlug = computed(() => route.value.params.slug);
-    const pageTitle = computed(() =>
-      contentGetters.getPageTitle(contentPage.value)
-    );
-    const content = computed(() =>
-      contentGetters.getPageContent(contentPage.value)
-    );
 
     onMounted(async () => {
       await searchContentPage({ contentPageSlug: pageSlug.value });
     });
 
     return {
-      pageTitle,
-      content
+      contentPage,
+      contentGetters
     };
   }
 };

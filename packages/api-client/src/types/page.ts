@@ -1,4 +1,6 @@
 export type CmsSection = {
+    sectionId: string;
+    type: string;
     rteContent: string;
     title: string;
     subtitle: string;
