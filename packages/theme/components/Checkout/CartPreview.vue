@@ -3,18 +3,18 @@
     <div class="highlighted">
       <SfHeading
         :level="3"
-        :title="$t('Order summary')"
+        :title="$t('components.checkout.cart_preview.order_summary')"
         class="sf-heading--left sf-heading--no-underline title"
       />
     </div>
     <div class="highlighted">
       <SfProperty
-        :name="$t('Products')"
+        :name="$t('components.checkout.cart_preview.products')"
         :value="totalItems"
         class="sf-property--full-width sf-property--large property"
       />
       <SfProperty
-        :name="$t('Subtotal')"
+        :name="$t('components.checkout.cart_preview.subtotal')"
         :value="$n(totals.subtotal, 'currency')"
         :class="['sf-property--full-width', 'sf-property--large property', { discounted: hasSpecialPrice }]"
       />
@@ -31,13 +31,13 @@
         class="sf-property--full-width sf-property--small property special-price"
       />
       <SfProperty
-        :name="$t('Shipping')"
+        :name="$t('components.checkout.cart_preview.shipping')"
         v-if="shippingPrice"
         :value="$n(shippingPrice, 'currency')"
         class="sf-property--full-width sf-property--large property"
       />
       <SfProperty
-        :name="$t('Total')"
+        :name="$t('components.checkout.cart_preview.total')"
         :value="$n(totals.total, 'currency')"
         class="sf-property--full-width sf-property--large property-total"
       />
@@ -47,10 +47,10 @@
         data-cy="cart-preview-input_promoCode"
         v-model="promoCode"
         name="promoCode"
-        :label="$t('Enter promo code')"
+        :label="$t('components.checkout.cart_preview.enter_promo_code')"
         class="sf-input--filled promo-code__input"
       />
-      <SfButton class="promo-code__button" @click="() => applyCoupon({ couponCode: promoCode })">{{ $t('Apply') }}</SfButton>
+      <SfButton class="promo-code__button" @click="() => applyCoupon({ couponCode: promoCode })">{{ $t('components.checkout.cart_preview.apply') }}</SfButton>
     </div>
     <span class="highlighted coupon-error" v-if="cartError.applyCoupon">{{ cartError.applyCoupon.message }}</span>
     <div class="highlighted">

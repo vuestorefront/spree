@@ -3,21 +3,21 @@
     <!-- Personal data update -->
     <SfTab title="Personal data">
       <p class="message">
-        {{ $t('Feel free to edit') }}
+        {{ $t('pages.my_account.my_profile.feel_free_to_edit') }}
       </p>
 
       <ProfileUpdateForm @submit="updatePersonalData" />
 
       <p class="notice">
-        {{ $t('Use your personal data') }}
-        <a href="">{{ $t('Privacy Policy') }}</a>
+        {{ $t('pages.my_account.my_profile.use_your_personal_data') }}
+        <a href="">{{ $t('pages.my_account.my_profile.privacy_policy') }}</a>
       </p>
     </SfTab>
     <!-- Password reset -->
     <SfTab title="Password change">
 
       <p class="message">
-        {{ $t('Change password your account') }}:<br />
+        {{ $t('pages.my_account.my_profile.change_password_your_account') }}:<br />
       </p>
       <PasswordResetForm/>
     </SfTab>

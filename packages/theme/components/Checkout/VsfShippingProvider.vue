@@ -24,7 +24,7 @@
           type="button"
           @click="save"
         >
-          {{ $t('Continue to billing') }}
+          {{ $t('components.checkout.vsf_shipping_provider.continue_to_billing') }}
         </SfButton>
       </div>
   </div>

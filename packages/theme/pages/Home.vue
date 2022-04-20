@@ -35,7 +35,7 @@
       <div class="similar-products">
         <SfHeading title="Match with it" :level="2"/>
         <nuxt-link :to="localePath('/c/categories/women')" class="smartphone-only">
-          {{ $t('See all') }}
+          {{ $t('pages.home.see_all') }}
         </nuxt-link>
       </div>
     </LazyHydrate>
@@ -88,7 +88,7 @@
             data-testid="cta-button"
             @click="toggleNewsletterModal"
           >
-            {{ $t('Subscribe') }}
+            {{ $t('pages.home.subscribe') }}
           </SfButton>
         </template>
       </SfCallToAction>

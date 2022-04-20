@@ -3,7 +3,7 @@
     <SfHeading
       v-e2e="'billing-heading'"
       :level="3"
-      :title="$t('Billing')"
+      :title="$t('pages.checkout.billing.billing')"
       class="sf-heading--left sf-heading--no-underline title"
     />
     <AddressPicker
@@ -181,14 +181,14 @@
             type="button"
             @click="router.push(localePath({ name: 'shipping' }))"
           >
-            {{ $t('Go back') }}
+            {{ $t('pages.checkout.billing.go_back') }}
           </SfButton>
           <SfButton
             v-e2e="'continue-to-payment'"
             class="form__action-button"
             type="submit"
           >
-            {{ $t('Continue to payment') }}
+            {{ $t('pages.checkout.billing.continue_to_payment') }}
           </SfButton>
         </div>
       </div>

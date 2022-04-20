@@ -66,7 +66,7 @@
                     v-else-if="!isWishlistDisabled"
                     class="wishlist__text desktop-only"
                   >
-                    {{ $t('Product already in your wishlist') }}
+                    {{ $t('components.cart_sidebar.product_already_in_your_wishlist') }}
                   </p>
                   <p
                     v-else
@@ -110,7 +110,7 @@
                 class="sf-button--full-width color-secondary"
                 @click="toggleCartSidebar"
               >
-                {{ $t('Go to checkout') }}
+                {{ $t('components.cart_sidebar.go_to_checkout') }}
               </SfButton>
             </nuxt-link>
           </div>
@@ -118,7 +118,7 @@
             <SfButton
               class="sf-button--full-width color-primary"
               @click="toggleCartSidebar"
-            >{{ $t('Go back shopping') }}</SfButton
+            >{{ $t('components.cart_sidebar.go_back_shopping') }}</SfButton
             >
           </div>
         </transition>

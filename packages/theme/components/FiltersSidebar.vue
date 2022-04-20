@@ -88,14 +88,14 @@
             class="sf-button--full-width"
             @click="applyFilters"
           >
-            {{ $t('Done') }}
+            {{ $t('components.filters_sidebar.done') }}
           </SfButton
           >
           <SfButton
             class="sf-button--full-width filters__button-clear"
             @click="clearFilters"
           >
-            {{ $t('Clear all') }}
+            {{ $t('components.filters_sidebar.clear_all') }}
           </SfButton
           >
         </div>

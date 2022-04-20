@@ -9,7 +9,7 @@
         <LazyHydrate never>
           <SfHeading
             :level="3"
-            :title="$t('Categories')"
+            :title="$t('pages.category.categories')"
             class="navbar__title" />
         </LazyHydrate>
       </div>
@@ -142,14 +142,14 @@
                   class="sf-button--text wishlist__button desktop-only"
                   @click="handleWishlistClick(product)"
                 >
-                  {{ $t('Save for later') }}
+                  {{ $t('pages.category.save_for_later') }}
                 </SfButton>
                 <SfButton
                   v-else
                   class="sf-button--text wishlist__button desktop-only"
                   @click="handleWishlistClick(product)"
                 >
-                  {{ $t('Remove from wishlist') }}
+                  {{ $t('pages.category.remove_from_wishlist') }}
                 </SfButton>
               </template>
             </SfProductCardHorizontal>
@@ -170,7 +170,7 @@
             v-show="pagination.totalPages > 1"
             class="products__show-on-page"
           >
-            <span class="products__show-on-page__label">{{ $t('Show on page') }}</span>
+            <span class="products__show-on-page__label">{{ $t('pages.category.show_on_page') }}</span>
             <LazyHydrate on-interaction>
               <SfSelect
                 :value="pagination && pagination.itemsPerPage ? pagination.itemsPerPage.toString() : ''"

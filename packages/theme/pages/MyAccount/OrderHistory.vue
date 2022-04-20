@@ -3,11 +3,11 @@
     <SfTab title="My orders">
       <div>
         <p class="message">
-          {{ $t('Details and status orders') }}
+          {{ $t('pages.my_account.order_history.details_and_status_orders') }}
         </p>
         <div v-if="orders.length === 0" class="no-orders">
-          <p class="no-orders__title">{{ $t('You currently have no orders') }}</p>
-          <SfButton class="no-orders__button">{{ $t('Start shopping') }}</SfButton>
+          <p class="no-orders__title">{{ $t('pages.my_account.order_history.you_currently_have_no_orders') }}</p>
+          <SfButton class="no-orders__button">{{ $t('pages.my_account.order_history.start_shopping') }}</SfButton>
         </div>
         <SfTable v-else class="orders">
           <SfTableHeading>
@@ -26,7 +26,7 @@
             </SfTableData>
             <SfTableData class="orders__view orders__element--right">
               <SfButton class="sf-button--text desktop-only" @click="displayOrderDetails(order)">
-                {{ $t('View details') }}
+                {{ $t('pages.my_account.order_history.view_details') }}
               </SfButton>
             </SfTableData>
           </SfTableRow>

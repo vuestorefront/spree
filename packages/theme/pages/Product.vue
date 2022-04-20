@@ -48,10 +48,10 @@
             </SfSelectOption>
           </SfSelect>
           <SfButton v-if="options.size" class="sf-button--text desktop-only product__guide">
-            {{ $t('Size guide') }}
+            {{ $t('pages.product.size_guide') }}
           </SfButton>
           <div v-if="options.color && options.color.length > 1" class="product__colors desktop-only">
-            <p class="product__color-label">{{ $t('Color') }}:</p>
+            <p class="product__color-label">{{ $t('pages.product.color') }}:</p>
             <SfColor
               v-for="(color, i) in options.color"
               :key="i"

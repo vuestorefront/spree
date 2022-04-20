@@ -9,7 +9,7 @@
       <SfTab
         :title="isNewAddress ? 'Add the address' : 'Update the address'">
         <p class="message">
-          {{ $t('Contact details updated') }}
+          {{ $t('pages.my_account.saved_addresses_details.contact_details_updated') }}
         </p>
 
         <SavedAddressForm
@@ -25,7 +25,7 @@
       class="tab-orphan">
       <SfTab title="Saved addresses" class="saved-addresses">
         <p class="saved-addresses__message">
-          {{ $t('Manage saved addresses') }}
+          {{ $t('pages.my_account.saved_addresses_details.manage_saved_addresses') }}
         </p>
         <transition-group tag="div" name="fade" class="saved-addresses__list">
           <div
@@ -47,12 +47,12 @@
               <SfButton
                 class="address__button address__button--change"
                 @click="changeAddress(address)">
-                {{ $t('Change') }}
+                {{ $t('pages.my_account.saved_addresses_details.change') }}
               </SfButton>
               <SfButton
                 class="color-light address__button address__button--delete desktop-only"
                 @click="removeAddress(address)">
-                {{ $t('Delete') }}
+                {{ $t('pages.my_account.saved_addresses_details.delete') }}
               </SfButton>
             </div>
           </div>
@@ -60,7 +60,7 @@
         <SfButton
           class="saved-addresses__button saved-addresses__button--action"
           @click="changeAddress()">
-          {{ $t('Add new address') }}
+          {{ $t('pages.my_account.saved_addresses_details.add_new_address') }}
         </SfButton>
       </SfTab>
     </SfTabs>

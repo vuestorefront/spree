@@ -3,7 +3,7 @@
     <SfHeading
       v-e2e="'shipping-heading'"
       :level="3"
-      :title="$t('Shipping')"
+      :title="$t('pages.checkout.shipping.shipping')"
       class="sf-heading--left sf-heading--no-underline title"
     />
     <AddressPicker
@@ -242,7 +242,7 @@
             class="form__action-button"
             type="submit"
           >
-            {{ $t('Select shipping method') }}
+            {{ $t('pages.checkout.shipping.select_shipping_method') }}
           </SfButton>
         </div>
       </div>
