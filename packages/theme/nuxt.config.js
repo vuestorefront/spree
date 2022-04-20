@@ -187,6 +187,10 @@ export default {
         path: '/my-account/:pageName/:id?',
         component: resolve(__dirname, 'pages/MyAccount.vue')
       });
+      routes.push({
+        path: '/content/:pageName?',
+        component: resolve(__dirname, 'pages/ContentPages.vue')
+      });
     }
   },
   publicRuntimeConfig: {
