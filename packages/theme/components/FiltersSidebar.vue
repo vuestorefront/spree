@@ -2,7 +2,7 @@
   <div id="filters">
     <SfSidebar
       :visible="isFilterSidebarOpen"
-      title="Filters"
+      :title="$t('components.filters_sidebar.filters')"
       class="sidebar-filters"
       @close="toggleFilterSidebar"
     >

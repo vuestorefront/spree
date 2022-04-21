@@ -2,19 +2,18 @@
   <div>
     <SfHeading
       :level="3"
-      title="Payment"
+      :title="$t('pages.checkout.payment.payment_heading')"
       class="sf-heading--left sf-heading--no-underline title"
     />
     <SfTable class="sf-table--bordered table desktop-only">
       <SfTableHeading class="table__row">
         <SfTableHeader class="table__header table__image">{{ $t('pages.checkout.payment.item') }}</SfTableHeader>
         <SfTableHeader
-          v-for="tableHeader in tableHeaders"
-          :key="tableHeader"
+          v-for="{ key, value } in $t('pages.checkout.payment.table_headers')"
+          :key="key"
           class="table__header"
-          :class="{ table__description: tableHeader === 'Description' }"
-        >
-          {{ tableHeader }}
+          :class="{ table__description: key === 'description' }"
+        >          {{ value }}
         </SfTableHeader>
       </SfTableHeading>
       <SfTableRow
@@ -170,7 +169,6 @@ export default {
       loading,
       products: computed(() => cartGetters.getItems(cart.value)),
       totals: computed(() => cartGetters.getTotals(cart.value)),
-      tableHeaders: ['Description', 'Size', 'Color', 'Quantity', 'Amount'],
       cartGetters,
       processOrder,
       handlePaymentChange

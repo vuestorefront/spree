@@ -3,19 +3,19 @@
     <a :href="localePath('/')" class="home-button">
     <SfBottomNavigationItem
       :is-active="route.path === '/' && !isMobileMenuOpen"
-      icon="home" size="20px" label="Home"
+      icon="home" size="20px" :label="$t('components.bottom_navigation.label_home_icon')"
     /></a>
-    <SfBottomNavigationItem icon="menu" size="20px" label="Menu" @click="toggleMobileMenu" :is-active="isMobileMenuOpen"/>
-    <SfBottomNavigationItem v-if="!isWishlistDisabled" icon="heart" size="20px" label="Wishlist" @click="toggleWishlistSidebar"/>
-    <SfBottomNavigationItem icon="profile" size="20px" label="Account" @click="handleAccountClick" :is-active="route.path === '/my-account' && !isMobileMenuOpen"/>
+    <SfBottomNavigationItem icon="menu" size="20px" :label="$t('components.bottom_navigation.label_menu_icon')" @click="toggleMobileMenu" :is-active="isMobileMenuOpen"/>
+    <SfBottomNavigationItem v-if="!isWishlistDisabled" icon="heart" size="20px" :label="$t('components.bottom_navigation.label_wishlist_icon')" @click="toggleWishlistSidebar"/>
+    <SfBottomNavigationItem icon="profile" size="20px" :label="$t('components.bottom_navigation.label_account_icon')" @click="handleAccountClick" :is-active="route.path === '/my-account' && !isMobileMenuOpen"/>
     <!-- TODO: add logic for label - if on Home then Basket, if on PDC then AddToCart etc. -->
     <SfBottomNavigationItem
-      label="Basket"
+      :label="$t('components.bottom_navigation.label_basket_icon')"
       icon="add_to_cart"
       @click="toggleCartSidebar"
     >
       <template #icon>
-        <SfCircleIcon class="cart-button" aria-label="Add to cart">
+        <SfCircleIcon class="cart-button" :aria-label="$t('components.bottom_navigation.aria_label_add_to_cart')">
           <SfIcon
             icon="add_to_cart"
             color="white"

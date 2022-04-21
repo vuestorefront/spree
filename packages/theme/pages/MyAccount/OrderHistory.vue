@@ -12,9 +12,11 @@
         <SfTable v-else class="orders">
           <SfTableHeading>
             <SfTableHeader
-              v-for="tableHeader in tableHeaders"
-              :key="tableHeader"
-              >{{ tableHeader }}</SfTableHeader>
+              v-for="{ key, value } in $t('pages.my_account.order_history.table_headers')"
+              :key="key"
+            >
+              {{ value }}
+            </SfTableHeader>
             <SfTableHeader class="orders__element--right" />
           </SfTableHeading>
           <SfTableRow v-for="order in orders" :key="orderGetters.getId(order)">
@@ -31,7 +33,7 @@
             </SfTableData>
           </SfTableRow>
         </SfTable>
-        <p>Total orders - {{ totalOrders }}</p>
+        <p>{{ $t('pages.my_account.order_history.total_orders_label', { totalOrders }) }}</p>
       </div>
     </SfTab>
   </SfTabs>
@@ -69,13 +71,6 @@ export default {
       await search();
     });
 
-    const tableHeaders = [
-      'Order ID',
-      'Payment date',
-      'Amount',
-      'Status'
-    ];
-
     const getStatusTextClass = (order) => {
       const status = orderGetters.getStatus(order);
       switch (status) {
@@ -89,7 +84,6 @@ export default {
     };
 
     return {
-      tableHeaders,
       orders,
       totalOrders: computed(() => orderGetters.getOrdersTotal(orders.value)),
       getStatusTextClass,

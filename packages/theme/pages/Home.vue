@@ -33,7 +33,7 @@
 
     <LazyHydrate when-visible>
       <div class="similar-products">
-        <SfHeading title="Match with it" :level="2"/>
+        <SfHeading :title="$t('pages.home.similar_products_heading')" :level="2"/>
         <nuxt-link :to="localePath('/c/categories/women')" class="smartphone-only">
           {{ $t('pages.home.see_all') }}
         </nuxt-link>
@@ -44,14 +44,14 @@
       <SfCarousel class="carousel" :settings="{ peek: 16, breakpoints: { 1023: { peek: 0, perView: 2 } } }">
         <template #prev="{go}">
           <SfArrow
-            aria-label="prev"
+            :aria-label="$t('pages.home.aria_label_carousel_arrow_prev')"
             class="sf-arrow--left sf-arrow--long"
             @click="go('prev')"
           />
         </template>
         <template #next="{go}">
           <SfArrow
-            aria-label="next"
+            :aria-label="$t('pages.home.aria_label_carousel_arrow_next')"
             class="sf-arrow--right sf-arrow--long"
             @click="go('next')"
           />
@@ -76,9 +76,9 @@
 
     <LazyHydrate when-visible>
       <SfCallToAction
-        title="Subscribe to Newsletters"
-        button-text="Subscribe"
-        description="Be aware of upcoming sales and events. Receive gifts and special offers!"
+        :title="$t('pages.home.cta_subscribe_title')"
+        :button-text="$t('pages.home.cta_subscribe_button_label')"
+        :description="$t('pages.home.cta_subscribe_description')"
         image="/homepage/newsletter.webp"
         class="call-to-action"
       >
@@ -88,7 +88,7 @@
             data-testid="cta-button"
             @click="toggleNewsletterModal"
           >
-            {{ $t('pages.home.subscribe') }}
+            {{ $t('pages.home.cta_subscribe_button_label') }}
           </SfButton>
         </template>
       </SfCallToAction>

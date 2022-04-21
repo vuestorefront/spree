@@ -3,7 +3,7 @@
     <SfHeading
       v-e2e="'billing-heading'"
       :level="3"
-      :title="$t('pages.checkout.billing.billing')"
+      :title="$t('pages.checkout.billing.billing_heading')"
       class="sf-heading--left sf-heading--no-underline title"
     />
     <AddressPicker
@@ -23,7 +23,7 @@
           <SfInput
             v-e2e="'billing-firstName'"
             v-model="form.firstName"
-            label="First name"
+            :label="$t('pages.checkout.billing.first_name_label')"
             name="firstName"
             class="form__element form__element--half"
             required
@@ -40,7 +40,7 @@
           <SfInput
             v-e2e="'billing-lastName'"
             v-model="form.lastName"
-            label="Last name"
+            :label="$t('pages.checkout.billing.last_name_label')"
             name="lastName"
             class="form__element form__element--half form__element--half-even"
             required
@@ -57,7 +57,7 @@
           <SfInput
             v-e2e="'billing-streetName'"
             v-model="form.addressLine1"
-            label="Street name"
+            :label="$t('pages.checkout.billing.street_label')"
             name="streetName"
             class="form__element"
             required
@@ -68,7 +68,7 @@
         <SfInput
           v-e2e="'billing-apartment'"
           v-model="form.addressLine2"
-          label="House/Apartment number"
+          :label="$t('pages.checkout.billing.apartment_label')"
           name="apartment"
           class="form__element"
         />
@@ -81,7 +81,7 @@
           <SfInput
             v-e2e="'billing-city'"
             v-model="form.city"
-            label="City"
+            :label="$t('pages.checkout.billing.city_label')"
             name="city"
             class="form__element"
             required
@@ -100,7 +100,7 @@
             class="form__element form form__select sf-select--underlined"
             v-model="form.state"
             name="state"
-            label="State/Province"
+            :label="$t('pages.checkout.billing.state_label')"
             :required="isStateRequired"
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -123,7 +123,7 @@
           <SfSelect
             v-e2e="'billing-country'"
             v-model="form.country"
-            label="Country"
+            :label="$t('pages.checkout.billing.country_label')"
             name="country"
             class="form__element form__element--half form__select sf-select--underlined"
             required
@@ -148,7 +148,7 @@
           <SfInput
             v-e2e="'billing-zipcode'"
             v-model="form.postalCode"
-            label="Zip-code"
+            :label="$t('pages.checkout.billing.postal_code_label')"
             name="zipCode"
             class="form__element form__element--half form__element--half-even"
             required
@@ -165,7 +165,7 @@
           <SfInput
             v-e2e="'billing-phone'"
             v-model="form.phone"
-            label="Phone number"
+            :label="$t('pages.checkout.billing.phone_number_label')"
             name="phone"
             class="form__element form__element--half"
             required
@@ -181,14 +181,14 @@
             type="button"
             @click="router.push(localePath({ name: 'shipping' }))"
           >
-            {{ $t('pages.checkout.billing.go_back') }}
+            {{ $t('pages.checkout.billing.button_go_back_label') }}
           </SfButton>
           <SfButton
             v-e2e="'continue-to-payment'"
             class="form__action-button"
             type="submit"
           >
-            {{ $t('pages.checkout.billing.continue_to_payment') }}
+            {{ $t('pages.checkout.billing.button_continue_to_payment_label') }}
           </SfButton>
         </div>
       </div>

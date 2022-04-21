@@ -35,7 +35,7 @@
             v-if="options.size"
             :value="configuration.size"
             @input="size => updateFilter({ size })"
-            label="Size"
+            :label="$t('pages.product.size_select_label')"
             class="sf-select--underlined product__select-size"
             :required="true"
           >
@@ -48,10 +48,10 @@
             </SfSelectOption>
           </SfSelect>
           <SfButton v-if="options.size" class="sf-button--text desktop-only product__guide">
-            {{ $t('pages.product.size_guide') }}
+            {{ $t('pages.product.button_size_guide_label') }}
           </SfButton>
           <div v-if="options.color && options.color.length > 1" class="product__colors desktop-only">
-            <p class="product__color-label">{{ $t('pages.product.color') }}:</p>
+            <p class="product__color-label">{{ $t('pages.product.color_label') }}:</p>
             <SfColor
               v-for="(color, i) in options.color"
               :key="i"
@@ -72,11 +72,11 @@
 
         <LazyHydrate when-idle>
           <SfTabs :open-tab="1" class="product__tabs">
-            <SfTab title="Description" style="padding: 0; margin: 0">
+            <SfTab :title="$t('pages.product.tab_title_description')" style="padding: 0; margin: 0">
               <div v-html="productGetters.getDescription(product)" class="product__description" ></div>
             </SfTab>
             <SfTab
-              title="Properties"
+              :title="$t('pages.product.tab_title_properties')"
               class="product__tab"
             >
               <SfProperty
@@ -102,7 +102,7 @@
       <RelatedProducts
         :products="relatedProducts"
         :loading="relatedLoading"
-        title="Match it with"
+        :title="$t('pages.product.related_products_title')"
       />
     </LazyHydrate>
 
@@ -222,13 +222,7 @@ export default {
     LazyHydrate
   },
   data() {
-    return {
-      description: 'Find stunning women cocktail and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands.',
-      detailsIsActive: false,
-      brand:
-          'Brand name is the perfect pairing of quality and design. This label creates major everyday vibes with its collection of modern brooches, silver and gold jewellery, or clips it back with hair accessories in geo styles.',
-      careInstructions: 'Do not wash!'
-    };
+    return { detailsIsActive: false };
   }
 };
 </script>

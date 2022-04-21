@@ -18,22 +18,22 @@
     </SfFooterColumn>
   </SfFooter>
   <SfFooter v-else :column="4" multiple class="footer">
-    <SfFooterColumn :title="$t('About us')">
+    <SfFooterColumn :title="$t('components.app_footer.about_us.title')">
       <SfList>
         <SfListItem
-          v-for="item in aboutUs"
+          v-for="item in $t(`components.app_footer.about_us.items`)"
           :key="item"
           >
           <SfMenuItem
-            :label="$t(item)"
+            :label="item"
           />
         </SfListItem>
       </SfList>
     </SfFooterColumn>
-    <SfFooterColumn :title="$t('Departments')">
+    <SfFooterColumn :title="$t('components.app_footer.departments.title')">
       <SfList>
         <SfListItem
-          v-for="item in departments"
+          v-for="item in $t(`components.app_footer.departments.items`)"
           :key="item"
         >
           <SfMenuItem
@@ -42,10 +42,10 @@
         </SfListItem>
       </SfList>
     </SfFooterColumn>
-    <SfFooterColumn :title="$t('Help')">
+    <SfFooterColumn :title="$t('components.app_footer.help.title')">
       <SfList>
         <SfListItem
-          v-for="item in help"
+          v-for="item in $t(`components.app_footer.help.items`)"
           :key="item"
         >
           <SfMenuItem
@@ -54,10 +54,10 @@
         </SfListItem>
       </SfList>
     </SfFooterColumn>
-    <SfFooterColumn :title="$t('Payment & Delivery')">
+    <SfFooterColumn :title="$t('components.app_footer.payment_and_delivery.title')">
       <SfList>
         <SfListItem
-          v-for="item in paymentsDelivery"
+          v-for="item in $t(`components.app_footer.payment_and_delivery.items`)"
           :key="item"
         >
           <SfMenuItem
@@ -66,9 +66,9 @@
         </SfListItem>
       </SfList>
     </SfFooterColumn>
-    <SfFooterColumn title="Social">
+    <SfFooterColumn :title="$t('components.app_footer.social.title')">
       <div class="footer__socials">
-        <SfImage class="footer__social-image" v-for="item in social" :key="item" :src="'/icons/'+item+'.svg'" :alt="item" width="32" height="32" />
+        <SfImage class="footer__social-image" v-for="item in $t('components.app_footer.social.items')" :key="item" :src="'/icons/'+item+'.svg'" :alt="item" width="32" height="32" />
       </div>
     </SfFooterColumn>
   </SfFooter>
@@ -89,11 +89,6 @@ export default {
   },
   data() {
     return {
-      aboutUs: ['Who we are', 'Quality in the details', 'Customer Reviews'],
-      departments: ['Women fashion', 'Men fashion', 'Kidswear', 'Home'],
-      help: ['Customer service', 'Size guide', 'Contact us'],
-      paymentsDelivery: ['Purchase terms', 'Guarantee'],
-      social: ['facebook', 'pinterest', 'google', 'twitter', 'youtube'],
       isMobile: false,
       desktopMin: 1024
     };

@@ -15,7 +15,7 @@
             data-cy="savedAddress-details-input_firstName"
             v-model="form.firstName"
             name="firstName"
-            label="First Name"
+            :label="$t('components.my_account.saved_address_form.first_name_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -30,7 +30,7 @@
             data-cy="savedAddress-details-input_lastName"
             v-model="form.lastName"
             name="lastName"
-            label="Last Name"
+            :label="$t('components.my_account.saved_address_form.last_name_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -46,7 +46,7 @@
           data-cy="savedAddress-details-input_streetName"
           v-model="form.addressLine1"
           name="streetName"
-          label="Street Name"
+          :label="$t('components.my_account.saved_address_form.street_label')"
           required
           :valid="!errors[0]"
           :errorMessage="errors[0]"
@@ -56,7 +56,7 @@
         data-cy="savedAddress-details-input_apartment"
         v-model="form.addressLine2"
         name="apartment"
-        label="House/Apartment number"
+        :label="$t('components.my_account.saved_address_form.apartment_label')"
         class="form__element"
       />
       <div class="form__horizontal">
@@ -69,7 +69,7 @@
             data-cy="savedAddress-details-input_city"
             v-model="form.city"
             name="city"
-            label="City"
+            :label="$t('components.my_account.saved_address_form.city_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -86,7 +86,7 @@
             class="form__select sf-select--underlined"
             v-model="form.state"
             name="state"
-            label="State/Province"
+            :label="$t('components.my_account.saved_address_form.state_label')"
             :required="isStateRequired"
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -111,7 +111,7 @@
             data-cy="savedAddress-details-input_zipCode"
             v-model="form.postalCode"
             name="zipCode"
-            label="Zip-code"
+            :label="$t('components.my_account.saved_address_form.postal_code_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -128,7 +128,7 @@
             class="form__select sf-select--underlined"
             v-model="form.country"
             name="country"
-            label="Country"
+            :label="$t('components.my_account.saved_address_form.country_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -152,7 +152,7 @@
           data-cy="savedAddress-details-input_phoneNumber"
           v-model="form.phone"
           name="phone"
-          label="Phone number"
+          :label="$t('components.my_account.saved_address_form.phone_number_label')"
           required
           :valid="!errors[0]"
           :errorMessage="errors[0]"
@@ -161,11 +161,11 @@
       <SfCheckbox
         v-model="form.isDefault"
         name="isDefault"
-        label="Set as default"
+        :label="$t('components.my_account.saved_address_form.set_as_default_label')"
         class="form__checkbox-isDefault"
       />
       <SfButton class="form__button">
-        {{ isNew ? "Add the address" : "Update the address" }}
+        {{ $t(`components.my_account.saved_address_form.${isNew ? 'button_add_address_label' : 'button_update_address_label'}`) }}
       </SfButton>
     </form>
   </ValidationObserver>

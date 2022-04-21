@@ -3,14 +3,14 @@
     <SfSidebar
       :visible="isWishlistSidebarOpen"
       :button="false"
-      title="My Wishlist"
+      :title="$t('components.wishlist_sidebar.sidebar_title')"
       @close="toggleWishlistSidebar"
       class="sidebar sf-sidebar--right"
     >
       <template #title>
         <div class="heading__wrapper">
-          <SfHeading :level="3" title="My wishlist" class="sf-heading--left"/>
-          <SfButton class="heading__close-button sf-button--pure" aria-label="Wishlist sidebar close button" @click="toggleWishlistSidebar">
+          <SfHeading :level="3" :title="$t('components.wishlist_sidebar.sidebar_title')" class="sf-heading--left"/>
+          <SfButton class="heading__close-button sf-button--pure" :aria-label="$t('components.wishlist_sidebar.aria_label_sidebar_close_button')" @click="toggleWishlistSidebar">
             <SfIcon icon="cross" size="14px" color="gray-primary"/>
           </SfButton>
         </div>
@@ -57,8 +57,8 @@
         <div v-else class="empty-wishlist" key="empty-wishlist">
           <div class="empty-wishlist__banner">
             <SfHeading
-              title="Your wishlist is empty"
-              description="You haven't added any items to your wishlist yet. Add some products to save them for later."
+              :title="$t('components.wishlist_sidebar.empty_wishlist_title')"
+              :description="$t('components.wishlist_sidebar.empty_wishlist_description')"
               class="empty-wishlist__label"
             />
           </div>

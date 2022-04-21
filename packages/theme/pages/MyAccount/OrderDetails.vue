@@ -1,38 +1,42 @@
 <template>
   <SfTabs :open-tab="1" v-if="order">
-    <SfTab :title="`Order details (${orderGetters.getId(order)})`">
-      <SfButton class="sf-button--text all-orders" @click="displayOrderHistory()">Show All Orders</SfButton>
+    <SfTab :title="$t('pages.my_account.order_details.tab_title', { orderId: orderGetters.getId(order) || '...' })">
+      <SfButton class="sf-button--text all-orders" @click="displayOrderHistory()">{{ $t('pages.my_account.order_details.button_show_all_orders_label') }}</SfButton>
       <div class="highlighted highlighted--total">
         <SfProperty
-          name="Order ID"
+          :name="$t('pages.my_account.order_details.table_header_order_id')"
           :value="orderGetters.getId(order)"
           class="sf-property--full-width property"
         />
         <SfProperty
-          name="Date"
+          :name="$t('pages.my_account.order_details.table_header_payment_date')"
           :value="orderGetters.getDate(order)"
           class="sf-property--full-width property"
         />
         <SfProperty
-          name="Status"
+          :name="$t('pages.my_account.order_details.table_header_status')"
           :value="orderGetters.getStatus(order)"
           class="sf-property--full-width property"
         />
         <SfProperty
-          name="Total"
+          :name="$t('pages.my_account.order_details.table_header_total')"
           :value="$n(orderGetters.getPrice(order), 'currency')"
           class="sf-property--full-width property"
         />
       </div>
       <SfTable class="products">
         <SfTableHeading>
-          <SfTableHeader class="products__name">{{ $t('Product') }}</SfTableHeader>
-          <SfTableHeader>{{ $t('Quantity') }}</SfTableHeader>
-          <SfTableHeader>{{ $t('Price') }}</SfTableHeader>
+          <SfTableHeader
+            v-for="{ key, value } in $t('pages.my_account.order_details.products_table_headers')"
+            :key="key"
+            :class="{ products__name: key === 'products_name' }"
+          >
+            {{ value }}
+          </SfTableHeader>
         </SfTableHeading>
         <SfTableRow v-for="(item, i) in orderGetters.getItems(order)" :key="i">
           <SfTableData class="products__name">
-            <nuxt-link :to="'/p/'+orderGetters.getItemSku(item)+'/'+orderGetters.getItemSku(item)">
+            <nuxt-link :to="`/p/${orderGetters.getItemSku(item)}/${orderGetters.getItemSku(item)}`">
               {{orderGetters.getItemName(item)}}
             </nuxt-link>
           </SfTableData>

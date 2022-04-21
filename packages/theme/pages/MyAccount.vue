@@ -6,29 +6,29 @@
     />
     <SfContentPages
       v-e2e="'my-account-content-pages'"
-      title="My Account"
+      :title="$t('pages.my_account.content_page_title_my_account')"
       :active="activePage"
       class="my-account"
       @click:change="changeActivePage"
     >
-      <SfContentCategory title="Personal Details">
-        <SfContentPage title="My profile">
+      <SfContentCategory :title="$t('pages.my_account.content_category_title_personal_details')">
+        <SfContentPage :title="$t('pages.my_account.content_page_title_my_profile')">
           <MyProfile />
         </SfContentPage>
 
-        <SfContentPage title="Saved addresses">
+        <SfContentPage :title="$t('pages.my_account.content_page_title_saved_addresses')">
           <SavedAddressesDetails />
         </SfContentPage>
       </SfContentCategory>
 
-      <SfContentCategory title="Order details">
-        <SfContentPage title="Order history">
+      <SfContentCategory :title="$t('pages.my_account.content_category_title_order_details')">
+        <SfContentPage :title="$t('pages.my_account.content_page_title_order_history')">
           <OrderHistory />
         </SfContentPage>
         <OrderDetails />
       </SfContentCategory>
 
-      <SfContentPage title="Log out" />
+      <SfContentPage :title="$t('pages.my_account.content_page_title_log_out')" />
     </SfContentPages>
   </div>
 </template>
