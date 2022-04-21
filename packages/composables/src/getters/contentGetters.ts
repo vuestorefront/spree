@@ -23,17 +23,17 @@ export const getPageContent = (contentPage: ContentPage): string => {
 export const getSectionComponentName = (cmsSection: CmsSection): string => {
   switch (cmsSection.type) {
     case contentSectionTypes.heroImage:
-      return '';
+      return 'HeroImage';
     case contentSectionTypes.featuredArticle:
-      return '';
+      return 'FeaturedArticle';
     case contentSectionTypes.productCarousel:
-      return '';
+      return 'ProductCarousel';
     case contentSectionTypes.imageGallery:
-      return '';
+      return 'ImageGallery';
     case contentSectionTypes.sideBySideImages:
-      return '';
+      return 'SideBySideImages';
     case contentSectionTypes.richTextContent:
-      return '';
+      return 'RichTextContent';
     default:
       return undefined;
   }

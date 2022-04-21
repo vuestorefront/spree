@@ -1,12 +1,13 @@
 export type CmsSection = {
     sectionId: string;
     type: string;
-    rteContent: string;
-    title: string;
-    subtitle: string;
-    buttonText: string;
-    settings: string;
-    fit: string;
+    link?: string;
+    rteContent?: string;
+    title?: string;
+    subtitle?: string;
+    buttonText?: string;
+    settings?: string;
+    fit?: string;
     imgOneSm?: string;
     imgOneMd?: string;
     imgOneLg?: string;
