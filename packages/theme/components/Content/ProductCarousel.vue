@@ -12,8 +12,7 @@
         :show-add-to-cart-button="false"
         wishlistIcon=""
         :link="localePath(`/p/${productGetters.getId(product)}/${productGetters.getSlug(product)}`)"
-        class="product-card"
-      />
+        />
     </SfCarouselItem>
   </SfCarousel>
 </template>
@@ -38,12 +37,12 @@ export default {
     SfProductCard
   },
   setup(props) {
-    const { search, result } = useFacet('home');
+    const { search, result } = useFacet('content');
 
     const products = computed(() => facetGetters.getProducts(result.value));
 
     onMounted(async () => {
-      await search({ categorySlug: props.section.link.slice(3)});
+      await search({ categorySlug: props.section.link[0].slice(3)});
     });
 
     return {
@@ -65,9 +64,6 @@ export default {
     margin: 1.375rem 0 2.5rem 0;
     @include for-desktop {
       margin: var(--spacer-xl) 0 var(--spacer-xl) 0;
-    }
-    &__product {
-      --product-card-add-button-transform: translate3d(0, 30%, 0);
     }
   }
   ::v-deep .sf-arrow--long .sf-arrow--right {

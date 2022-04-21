@@ -5,15 +5,30 @@
     >
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage src="section.imgTwoXl" alt=""></SfImage>
+          <SfImage
+            class="image"
+            :src="section.imgTwoXl"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[1]))"
+          />
         </div>
       </div>
       <div class="grid__row">
         <div class="grid__col medium">
-          <SfImage src="section.imgOneMd" alt=""></SfImage>
+          <SfImage
+            class="image"
+            :src="section.imgOneMd"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[3]))"
+          />
         </div>
         <div class="grid__col medium">
-          <SfImage src="section.imgThreeMd" alt=""></SfImage>
+          <SfImage
+            class="image"
+            :src="section.imgThreeMd"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[2]))"
+          />
         </div>
       </div>
     </div>
@@ -22,15 +37,30 @@
     >
       <div class="grid__row">
         <div class="grid__col medium">
-          <SfImage src="section.imgOneMd" alt=""></SfImage>
+          <SfImage
+            class="image medium"
+            :src="section.imgOneMd"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[1]))"
+          />
         </div>
         <div class="grid__col medium">
-          <SfImage src="section.imgThreeMd" alt=""></SfImage>
+          <SfImage
+            class="image medium"
+            :src="section.imgThreeMd"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[2]))"
+          />
         </div>
       </div>
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage src="section.imgTwoXl" alt=""></SfImage>
+          <SfImage
+            class="image"
+            :src="section.imgTwoXl"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[3]))"
+          />
         </div>
       </div>
     </div>
@@ -43,6 +73,7 @@ import {
   SfImage,
   SfSection
 } from '@storefront-ui/vue';
+import {useRouter} from '@nuxtjs/composition-api';
 
 export default {
   name: 'ImageGallery',
@@ -56,9 +87,11 @@ export default {
     SfImage
   },
   setup(props) {
+    const router = useRouter();
     const isLayoutReversed = props.section.layout === 'Reversed';
     return {
-      isLayoutReversed
+      isLayoutReversed,
+      router
     };
   }
 };
@@ -106,6 +139,20 @@ export default {
         margin-top: var(--spacer-sm);
       }
     }
+  }
+}
+.image {
+  --image-width: 10rem;
+  ::v-deep .sf-image-loaded{
+    outline-style: none;
+
+  }
+  @include for-desktop {
+    &.medium {
+      --image-height: 14.1875rem;
+    }
+    --image-width: 29.375rem;
+    --image-height: 29.375rem;
   }
 }
 

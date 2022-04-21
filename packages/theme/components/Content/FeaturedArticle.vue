@@ -2,9 +2,9 @@
   <div>
     <SfHeading :title="section.title"/>
     <div v-html="section.rteContent"
-       :title="section.title"
     />
     <SfButton
+      @click="router.push(section.link[0])"
     >
       {{ $t(section.buttonText) }}
     </SfButton>
@@ -16,21 +16,25 @@ import {
   SfHeading,
   SfButton
 } from '@storefront-ui/vue';
+import { useRouter } from '@nuxtjs/composition-api';
 
 export default {
   name: 'FeaturedArticle',
   props: {
     section: {
       type: Object
-    },
+    }
   },
   components: {
     SfHeading,
     SfButton
   },
-  // setup(props) {
-  //   console.log(props.section);
-  // }
+  setup() {
+    const router = useRouter();
+    return {
+      router
+    };
+  }
 };
 </script>
 

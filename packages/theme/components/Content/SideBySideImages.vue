@@ -3,12 +3,22 @@
     <div class="grid grid-images">
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage src="section.imgOneMd" alt=""></SfImage>
+          <SfImage
+            class="image"
+            :src="section.imgOneXl"
+            @click="router.push('/c/'.concat(section.link[1]))"
+            alt=""
+          />
         </div>
       </div>
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage src="section.imgTwoMd" alt=""></SfImage>
+          <SfImage
+            class="image"
+            :src="section.imgTwoXl"
+            alt=""
+            @click="router.push('/c/'.concat(section.link[2]))"
+          />
         </div>
       </div>
     </div>
@@ -17,6 +27,7 @@
 
 <script>
 import { SfImage, SfSection } from '@storefront-ui/vue';
+import { useRouter } from '@nuxtjs/composition-api';
 
 export default {
   name: 'SideBySideImages',
@@ -28,6 +39,12 @@ export default {
   components: {
     SfSection,
     SfImage
+  },
+  setup(props) {
+    const router = useRouter();
+    return {
+      router
+    };
   }
 };
 </script>
@@ -70,6 +87,15 @@ export default {
         margin-top: var(--spacer-sm);
       }
     }
+  }
+}
+.image {
+  --image-width: 10rem;
+  ::v-deep .sf-image-loaded{
+    outline-style: none;
+  }
+  @include for-desktop {
+    --image-width: 29.375rem;;
   }
 }
 

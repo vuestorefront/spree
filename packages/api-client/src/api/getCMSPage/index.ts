@@ -13,5 +13,5 @@ export default async function getCMSPage({ config }: ApiContext, {cmsPageSlug: c
   });
 
   const { data, included } = result.data;
-  return deserializePage(data, included);
+  return deserializePage(data, included, config.backendUrl);
 }

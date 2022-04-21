@@ -1,7 +1,7 @@
 export type CmsSection = {
     sectionId: string;
     type: string;
-    link?: string;
+    link?: string[];
     rteContent?: string;
     title?: string;
     subtitle?: string;
