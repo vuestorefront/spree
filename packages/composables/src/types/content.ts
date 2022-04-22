@@ -9,6 +9,7 @@ export type ContentSearchParams = {
 export type ContentGetters = {
   getPageTitle: (contentPage: ContentPage) => string;
   getPageContent: (contentPage: ContentPage) => string;
+  getPageSections: (contentPage: ContentPage) => CmsSection[];
   getSectionComponentName: (cmsSection: CmsSection) => string;
   isStandardPage: (contentPage: ContentPage) => boolean;
 };

@@ -154,5 +154,7 @@ export default {
   'show more': 'mehr anzeigen',
   'hide': 'ausblenden',
   'Change to grid view': 'Zur Rasteransicht wechseln',
-  'Change to list view': 'Zur Listenansicht wechseln'
+  'Change to list view': 'Zur Listenansicht wechseln',
+  'Content page not found': 'Content page not found',
+  'Try again with different URL': 'Try again with different URL'
 };

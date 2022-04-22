@@ -154,5 +154,7 @@ export default {
   'show more': 'show more',
   'hide': 'hide',
   'Change to grid view': 'Change to grid view',
-  'Change to list view': 'Change to list view'
+  'Change to list view': 'Change to list view',
+  'Content page not found': 'Content page not found',
+  'Try again with different URL': 'Try again with different URL'
 };

@@ -20,6 +20,10 @@ export const getPageContent = (contentPage: ContentPage): string => {
   return contentPage?.content;
 };
 
+export const getPageSections = (contentPage: ContentPage): CmsSection[] => {
+  return contentPage?.cmsSections ?? [];
+};
+
 export const getSectionComponentName = (cmsSection: CmsSection): string => {
   switch (cmsSection.type) {
     case contentSectionTypes.heroImage:
@@ -46,6 +50,7 @@ export const isStandardPage = (contentPage: ContentPage): boolean => {
 const contentGetters: ContentGetters = {
   getPageTitle,
   getPageContent,
+  getPageSections,
   getSectionComponentName,
   isStandardPage
 };
