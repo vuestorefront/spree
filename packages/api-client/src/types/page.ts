@@ -20,14 +20,18 @@ export type CmsSection = {
     imgThreeMd?: string;
     imgThreeLg?: string;
     imgThreeXl?: string;
-}
+};
 
-export type Page = {
-    id: number;
+export type ContentPage = {
+    id: string;
     title: string;
     content: string;
     locale: string;
     type: string;
     slug: string;
     cmsSections: CmsSection[];
-}
+};
+
+export type GetContentPageParams = {
+    contentPageSlug: string;
+};

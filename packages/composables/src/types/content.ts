@@ -1,6 +1,6 @@
-import { Page, CmsSection } from '@vue-storefront/spree-api/src/types';
+import type { ContentPage, CmsSection } from '@vue-storefront/spree-api/src/types';
 
-export type ContentPage = Page;
+export type { ContentPage };
 
 export type ContentSearchParams = {
   contentPageSlug: string;

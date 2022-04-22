@@ -1,6 +1,7 @@
-import { CmsSection, Page } from '../../types';
+import { JsonApiDocument } from '@spree/storefront-api-v2-sdk/types/interfaces/JsonApi';
+import { CmsSection, ContentPage } from '../../types';
 
-export const deserializeLinks = (links): string => {
+export const deserializeLinks = (links: string[]): string[] => {
   return links.map(link => {
     if (!link) {
       return null;
@@ -13,7 +14,7 @@ export const deserializeLinks = (links): string => {
   });
 };
 
-export const deserializeCmsSection = (cmsSections, backendUrl): CmsSection[] => {
+export const deserializeCmsSection = (cmsSections: JsonApiDocument[], backendUrl: string): CmsSection[] => {
   return cmsSections.map(section => ({
     sectionId: section.id,
     type: section.attributes.type,
@@ -39,7 +40,7 @@ export const deserializeCmsSection = (cmsSections, backendUrl): CmsSection[] => 
   }));
 };
 
-export const deserializePage = (data, included, backendUrl): Page => ({
+export const deserializePage = (data: JsonApiDocument, included: JsonApiDocument[], backendUrl: string): ContentPage => ({
   id: data.id,
   title: data.attributes.title,
   content: data.attributes.content,

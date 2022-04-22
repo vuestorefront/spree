@@ -8,7 +8,7 @@ import { ContentPage, ContentSearchParams } from '../types';
 const params: UseContentFactoryParams<ContentPage, ContentSearchParams> = {
   search: async (context: Context, { contentPageSlug }) => {
     const contentPage: ContentPage = await context.$spree.api.getCMSPage({
-      cmsPageSlug: contentPageSlug
+      contentPageSlug
     });
 
     return contentPage;

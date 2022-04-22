@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { Page, ApiContext } from '../../types';
+import { ContentPage, ApiContext, GetContentPageParams } from '../../types';
 import { deserializePage } from '../serializers/page';
 
 const getPageInclude = 'cms_sections';
 
-export default async function getCMSPage({ config }: ApiContext, {cmsPageSlug: cmsPageSlug}): Promise<Page> {
-  const url = config.backendUrl.concat(`/api/v2/storefront/cms_pages/${cmsPageSlug}`);
+export default async function getCMSPage({ config }: ApiContext, { contentPageSlug }: GetContentPageParams): Promise<ContentPage> {
+  const url = config.backendUrl.concat(`/api/v2/storefront/cms_pages/${contentPageSlug}`);
 
   const result = await axios.get(url, { params: {
     include: getPageInclude
