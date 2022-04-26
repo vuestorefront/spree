@@ -7,7 +7,7 @@
     <SfContentPages
       v-e2e="'my-account-content-pages'"
       :title="$t('pages.my_account.content_page_title_my_account')"
-      :active="activePage"
+      :active="activePage.localizedTitle"
       class="my-account"
       @click:change="changeActivePage"
     >
@@ -25,7 +25,7 @@
         <SfContentPage :title="$t('pages.my_account.content_page_title_order_history')">
           <OrderHistory />
         </SfContentPage>
-        <OrderDetails />
+        <OrderDetails v-if="activePage.pageName === 'order-details'" />
       </SfContentCategory>
 
       <SfContentPage :title="$t('pages.my_account.content_page_title_log_out')" />
@@ -34,7 +34,12 @@
 </template>
 <script>
 import { SfBreadcrumbs, SfContentPages } from '@storefront-ui/vue';
-import { computed, onBeforeUnmount, useRoute, useRouter } from '@nuxtjs/composition-api';
+import {
+  computed,
+  useRoute,
+  useRouter,
+  onBeforeUnmount
+} from '@nuxtjs/composition-api';
 import { useUser } from '@vue-storefront/spree';
 import MyProfile from './MyAccount/MyProfile';
 import SavedAddressesDetails from './MyAccount/SavedAddressesDetails';
@@ -57,32 +62,50 @@ export default {
     OrderHistory,
     OrderDetails
   },
-  middleware: [
-    'is-authenticated'
-  ],
+  middleware: ['is-authenticated'],
   setup(props, context) {
     const route = useRoute();
     const router = useRouter();
     const { logout } = useUser();
     const isMobile = computed(mapMobileObserver().isMobile);
-    const activePage = computed(() => {
-      const { pageName } = route.value.params;
-      if (!pageName) return isMobile.value ? '' : 'My profile';
-      return `${pageName.charAt(0).toUpperCase()}${pageName.slice(1)}`.replace('-', ' ');
-    });
+
+    const handleOpenPage = async ({ pageName }) => {
+      const pageRoute = {
+        ...route.value,
+        path: context.root.localePath(route.value.path),
+        params: { pageName }
+      };
+      router.push(pageRoute);
+    };
+
+    const handleLogout = async () =>
+      logout()
+        .then(() => context.root.localePath({ name: 'home' }))
+        .then(path => router.push(path));
+
+    const pages = computed(() => [
+      { pageName: 'my-profile', i18nKey: 'pages.my_account.content_page_title_my_profile', onActive: handleOpenPage },
+      { pageName: 'saved-addresses', i18nKey: 'pages.my_account.content_page_title_saved_addresses', onActive: handleOpenPage },
+      { pageName: 'order-history', i18nKey: 'pages.my_account.content_page_title_order_history', onActive: handleOpenPage },
+      { pageName: 'order-details', i18nKey: 'pages.my_account.content_page_title_order_details' },
+      { pageName: 'log-out', i18nKey: 'pages.my_account.content_page_title_log_out', onActive: handleLogout }
+    ].map((page) => ({ ...page, localizedTitle: context.root.$i18n.t(page.i18nKey) })));
+
+    const findPageByPageName = (name) => pages.value.find(({ pageName }) => pageName === name);
+
+    const findPageByLocalizedTitle = (title) => pages.value.find(({ localizedTitle }) => localizedTitle === title);
 
     const changeActivePage = async (title) => {
-      if (title === 'Log out') {
-        await logout();
-        router.push(context.root.localePath({ name: 'home' }));
-        return;
-      }
-
-      const slugifiedTitle = (title || '').toLowerCase().replace(' ', '-');
-      const transformedPath = `/my-account/${slugifiedTitle}`;
-      const localeTransformedPath = context.root.localePath(transformedPath);
-      router.push(localeTransformedPath);
+      const page = findPageByLocalizedTitle(title);
+      if (!page) return handleOpenPage({ pageName: undefined });
+      await page?.onActive?.(page);
     };
+
+    const activePage = computed(() => {
+      const { pageName } = route.value.params;
+      if (!pageName) return isMobile.value ? {} : findPageByPageName('my-profile');
+      return findPageByPageName(pageName);
+    });
 
     onBeforeUnmount(() => {
       unMapMobileObserver();
@@ -108,7 +131,7 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 #my-account {
   box-sizing: border-box;
   @include for-desktop {
@@ -122,7 +145,7 @@ export default {
       --font-weight--normal
     );
     --content-pages-sidebar-category-title-margin: var(--spacer-sm)
-    var(--spacer-sm) var(--spacer-sm) var(--spacer-base);
+      var(--spacer-sm) var(--spacer-sm) var(--spacer-base);
   }
   @include for-desktop {
     --content-pages-sidebar-category-title-margin: var(--spacer-xl) 0 0 0;

@@ -94,6 +94,7 @@ export default {
       content_page_title_saved_addresses: 'Saved addresses',
       content_category_title_order_details: 'Order details',
       content_page_title_order_history: 'Order history',
+      content_page_title_order_details: 'Order details',
       content_page_title_log_out: 'Log out',
       my_profile: {
         tab_title_personal_data: 'Personal data',
