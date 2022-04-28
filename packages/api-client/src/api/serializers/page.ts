@@ -9,7 +9,9 @@ export const deserializeLinks = (links: string[]): string[] => {
     if (link.includes('pages')) {
       return link.replace('pages', 'content');
     } else if (link.includes('categories')) {
-      return link.replace('/t/', '/c/');
+      return '/c/'.concat(link.replace('/t/', ''));
+    } else {
+      return link.includes('products') ? link.replace('/products/', '/p/1/') : '/p/1/'.concat(link);
     }
   });
 };
@@ -18,7 +20,7 @@ export const deserializeCmsSection = (cmsSections: JsonApiDocument[], backendUrl
   return cmsSections.map(section => ({
     sectionId: section.id,
     type: section.attributes.type,
-    link: deserializeLinks([section.attributes.link, section.attributes.content?.link_one, section.attributes.content?.link_two, section.attributes.content?.link_three]),
+    links: deserializeLinks([section.attributes.link, section.attributes.content?.link_one, section.attributes.content?.link_two, section.attributes.content?.link_three]),
     rteContent: section.attributes.content?.rte_content,
     title: section.attributes.content?.title,
     subtitle: section.attributes.content?.subtitle,

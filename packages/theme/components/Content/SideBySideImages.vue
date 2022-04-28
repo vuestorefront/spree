@@ -3,22 +3,24 @@
     <div class="grid grid-images">
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage
-            class="image"
-            :src="section.imgOneXl"
-            @click="router.push('/c/'.concat(section.link[1]))"
-            alt=""
-          />
+          <a :href="(section.links[1] !== null ? localePath(`${section.links[1]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgOneMd : section.imgOneXl"
+              alt=""
+            />
+          </a>
         </div>
       </div>
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage
-            class="image"
-            :src="section.imgTwoXl"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[2]))"
-          />
+          <a :href="(section.links[2] !== null ? localePath(`${section.links[2]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgTwoMd : section.imgTwoXl"
+              alt=""
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -27,7 +29,7 @@
 
 <script>
 import { SfImage, SfSection } from '@storefront-ui/vue';
-import { useRouter } from '@nuxtjs/composition-api';
+import {mapMobileObserver, unMapMobileObserver} from '@storefront-ui/vue/src/utilities/mobile-observer';
 
 export default {
   name: 'SideBySideImages',
@@ -40,11 +42,11 @@ export default {
     SfSection,
     SfImage
   },
-  setup(props) {
-    const router = useRouter();
-    return {
-      router
-    };
+  computed: {
+    ...mapMobileObserver()
+  },
+  beforeDestroy() {
+    unMapMobileObserver();
   }
 };
 </script>
@@ -72,7 +74,7 @@ export default {
     }
   }
   &__col {
-    width: 10rem;
+    width: 15rem;
     height: 10rem;
     @include for-desktop {
       &.small {
@@ -90,13 +92,11 @@ export default {
   }
 }
 .image {
-  --image-width: 10rem;
+  fit: cover;
   ::v-deep .sf-image-loaded{
     outline-style: none;
   }
-  @include for-desktop {
-    --image-width: 29.375rem;;
-  }
+
 }
 
 </style>

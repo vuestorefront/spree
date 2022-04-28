@@ -5,30 +5,33 @@
     >
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage
-            class="image"
-            :src="section.imgTwoXl"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[1]))"
-          />
+          <a :href="(section.links[2] !== null ? localePath(`${section.links[2]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgTwoMd : section.imgTwoXl"
+              alt=""
+            />
+          </a>
         </div>
       </div>
       <div class="grid__row">
         <div class="grid__col medium">
-          <SfImage
-            class="image"
-            :src="section.imgOneMd"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[3]))"
-          />
+          <a :href="(section.links[1] !== null ? localePath(`${section.links[1]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgOneSm : section.imgOneMd"
+              alt=""
+            />
+          </a>
         </div>
         <div class="grid__col medium">
-          <SfImage
-            class="image"
-            :src="section.imgThreeMd"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[2]))"
-          />
+          <a :href="(section.links[3] !== null ? localePath(`${section.links[3]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgThreeSm : section.imgThreeMd"
+              alt=""
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -37,30 +40,33 @@
     >
       <div class="grid__row">
         <div class="grid__col medium">
-          <SfImage
-            class="image medium"
-            :src="section.imgOneMd"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[1]))"
-          />
+          <a :href="(section.links[1] !== null ? localePath(`${section.links[1]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgOneSm : section.imgOneMd"
+              alt=""
+            />
+          </a>
         </div>
         <div class="grid__col medium">
-          <SfImage
-            class="image medium"
-            :src="section.imgThreeMd"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[2]))"
-          />
+          <a :href="(section.links[3] !== null ? localePath(`${section.links[3]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgThreeSm : section.imgThreeMd"
+              alt=""
+            />
+          </a>
         </div>
       </div>
       <div class="grid__row">
         <div class="grid__col">
-          <SfImage
-            class="image"
-            :src="section.imgTwoXl"
-            alt=""
-            @click="router.push('/c/'.concat(section.link[3]))"
-          />
+          <a :href="(section.links[2] !== null ? localePath(`${section.links[2]}`) : 'javascript:void(0)')">
+            <SfImage
+              class="image"
+              :src="isMobile ? section.imgTwoMd : section.imgTwoXl"
+              alt=""
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -73,7 +79,7 @@ import {
   SfImage,
   SfSection
 } from '@storefront-ui/vue';
-import {useRouter} from '@nuxtjs/composition-api';
+import {mapMobileObserver, unMapMobileObserver} from '@storefront-ui/vue/src/utilities/mobile-observer';
 
 export default {
   name: 'ImageGallery',
@@ -86,12 +92,16 @@ export default {
     SfSection,
     SfImage
   },
+  computed: {
+    ...mapMobileObserver()
+  },
+  beforeDestroy() {
+    unMapMobileObserver();
+  },
   setup(props) {
-    const router = useRouter();
     const isLayoutReversed = props.section.layout === 'Reversed';
     return {
-      isLayoutReversed,
-      router
+      isLayoutReversed
     };
   }
 };
@@ -121,12 +131,9 @@ export default {
     }
   }
   &__col {
-    width: 10rem;
+    width: 15rem;
     height: 10rem;
     @include for-desktop {
-      &.small {
-        height: 10rem;
-      }
       &.medium {
         height: 14.1875rem;
       }
@@ -142,18 +149,18 @@ export default {
   }
 }
 .image {
-  --image-width: 10rem;
+  fit: cover;
   ::v-deep .sf-image-loaded{
     outline-style: none;
 
   }
-  @include for-desktop {
-    &.medium {
-      --image-height: 14.1875rem;
-    }
-    --image-width: 29.375rem;
-    --image-height: 29.375rem;
-  }
+  //@include for-desktop {
+  //  &.medium {
+  //    --image-height: 14.1875rem;
+  //  }
+  //  --image-width: 29.375rem;
+  //  --image-height: 29.375rem;
+  //}
 }
 
 </style>

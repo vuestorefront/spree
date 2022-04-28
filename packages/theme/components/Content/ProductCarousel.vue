@@ -42,7 +42,7 @@ export default {
     const products = computed(() => facetGetters.getProducts(result.value));
 
     onMounted(async () => {
-      await search({ categorySlug: props.section.link[0].slice(3)});
+      await search({ categorySlug: props.section.links[0].slice(3)});
     });
 
     return {

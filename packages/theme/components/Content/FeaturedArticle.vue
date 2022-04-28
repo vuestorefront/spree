@@ -4,7 +4,7 @@
     <div v-html="section.rteContent"
     />
     <SfButton
-      @click="router.push(section.link[0])"
+      :link="localePath(section.links[0])"
     >
       {{ $t(section.buttonText) }}
     </SfButton>
@@ -16,7 +16,6 @@ import {
   SfHeading,
   SfButton
 } from '@storefront-ui/vue';
-import { useRouter } from '@nuxtjs/composition-api';
 
 export default {
   name: 'FeaturedArticle',
@@ -28,12 +27,6 @@ export default {
   components: {
     SfHeading,
     SfButton
-  },
-  setup() {
-    const router = useRouter();
-    return {
-      router
-    };
   }
 };
 </script>
