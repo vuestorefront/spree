@@ -1,6 +1,8 @@
 import type { CategorySearchResult, LineItem, ProductVariant, Order, Country, State, WishedProduct } from '@vue-storefront/spree-api';
 import type { AgnosticGroupedFacet, ComputedProperty } from '@vue-storefront/core';
 
+export * from './content';
+
 export { UseCategory, UseProduct } from '@vue-storefront/core';
 
 export type UseCountryErrors = {

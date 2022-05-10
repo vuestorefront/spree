@@ -11,6 +11,7 @@ import userBillingGetters from './userBillingGetters';
 import orderGetters from './orderGetters';
 import wishlistGetters from './wishlistGetters';
 import forgotPasswordGetters from './forgotPasswordGetters';
+import contentGetters from './contentGetters';
 
 export {
   cartGetters,
@@ -24,5 +25,6 @@ export {
   userBillingGetters,
   orderGetters,
   wishlistGetters,
-  forgotPasswordGetters
+  forgotPasswordGetters,
+  contentGetters
 };
