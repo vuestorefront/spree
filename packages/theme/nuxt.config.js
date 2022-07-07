@@ -197,6 +197,7 @@ export default {
     },
     extendRoutes(routes, resolve) {
       routes.push({
+        name: 'OrderDetails',
         path: '/my-account/:pageName/:id?',
         component: resolve(__dirname, 'pages/MyAccount.vue')
       });

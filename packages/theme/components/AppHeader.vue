@@ -8,7 +8,7 @@
       <!-- TODO: add mobile view buttons after SFUI team PR -->
       <template #logo>
         <a :href="localePath('/')" class="sf-header__logo">
-          <SfImage src="/icons/logo.svg" alt="Vue Storefront Next" class="sf-header__logo-image"/>
+          <SfImage src="/icons/logo.svg" :alt="$t('components.app_header.alt_header_logo')" class="sf-header__logo-image"/>
         </a>
       </template>
       <template #navigation>
@@ -21,7 +21,7 @@
         <div v-e2e="'header-icons'" class="sf-header__icons">
           <SfButton
             class="sf-button--pure sf-header__action"
-            aria-label="Open account button"
+            :aria-label="$t('components.app_header.aria_label_open_account_button')"
             @click="handleAccountClick"
           >
             <SfIcon
@@ -32,7 +32,7 @@
           <SfButton
             v-if="!isWishlistDisabled"
             class="sf-button--pure sf-header__action"
-            aria-label="Toggle wishlist sidebar"
+            :aria-label="$t('components.app_header.aria_label_toggle_wishlist_sidebar_button')"
             @click="toggleWishlistSidebar"
           >
             <SfIcon
@@ -44,7 +44,7 @@
           </SfButton>
           <SfButton
             class="sf-button--pure sf-header__action"
-            aria-label="Toggle cart sidebar"
+            :aria-label="$t('components.app_header.aria_label_toggle_cart_sidebar_button')"
             @click="toggleCartSidebar"
           >
             <SfIcon
@@ -59,8 +59,8 @@
       <template #search>
         <SfSearchBar
           ref="searchBarRef"
-          :placeholder="$t('Search for items')"
-          aria-label="Search"
+          :placeholder="$t('components.app_header.search_for_items')"
+          :aria-label="$t('components.app_header.aria_label_search_bar')"
           class="sf-header__search"
           :value="term"
           @input="handleSearch"
@@ -72,7 +72,7 @@
           <template #icon>
             <SfButton
               v-if="!!term"
-              aria-label="Close search"
+              :aria-label="$t('components.app_header.aria_label_close_search_button')"
               class="sf-search-bar__button sf-button--pure"
               @click="closeOrFocusSearchBar"
             >
@@ -82,7 +82,7 @@
             </SfButton>
             <SfButton
               v-else
-              aria-label="Open search"
+              :aria-label="$t('components.app_header.aria_label_open_search_button')"
               class="sf-search-bar__button sf-button--pure"
               @click="isSearchOpen ? isSearchOpen = false : isSearchOpen = true"
             >

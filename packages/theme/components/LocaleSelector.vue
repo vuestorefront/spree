@@ -15,7 +15,7 @@
     </SfButton>
     <SfBottomModal
       :is-open="isLocaleModalOpen"
-      :title="$t('Change locale')"
+      :title="$t('components.locale_selector.change_locale')"
       @click:close="closeLocaleSelector()"
       class="locale-selector__container container container--locale"
     >
@@ -54,7 +54,7 @@
     </SfButton>
     <SfBottomModal
       :is-open="isCurrencyModalOpen"
-      :title="$t('Change currency')"
+      :title="$t('components.locale_selector.change_currency')"
       @click:close="closeCurrencySelector()"
       class="locale-selector__container container container--currency"
     >
@@ -92,7 +92,7 @@
       </template>
       <template #title>
         <p class="sf-dropdown__title container__label container__label--hint">
-          {{ $t('Change locale') }}
+          {{ $t('components.locale_selector.change_locale') }}
         </p>
       </template>
       <template #opener>
@@ -154,7 +154,7 @@
       </template>
       <template #title>
         <p class="sf-dropdown__title container__label container__label--hint">
-          {{ $t('Change currency') }}
+          {{ $t('components.locale_selector.change_currency') }}
         </p>
       </template>
       <template #opener>

@@ -2,19 +2,18 @@
   <div>
     <SfHeading
       :level="3"
-      title="Payment"
+      :title="$t('pages.checkout.payment.payment_heading')"
       class="sf-heading--left sf-heading--no-underline title"
     />
     <SfTable class="sf-table--bordered table desktop-only">
       <SfTableHeading class="table__row">
-        <SfTableHeader class="table__header table__image">{{ $t('Item') }}</SfTableHeader>
+        <SfTableHeader class="table__header table__image">{{ $t('pages.checkout.payment.item') }}</SfTableHeader>
         <SfTableHeader
-          v-for="tableHeader in tableHeaders"
-          :key="tableHeader"
+          v-for="{ key, value } in $t('pages.checkout.payment.table_headers')"
+          :key="key"
           class="table__header"
-          :class="{ table__description: tableHeader === 'Description' }"
-        >
-          {{ tableHeader }}
+          :class="{ table__description: key === 'description' }"
+        >          {{ value }}
         </SfTableHeader>
       </SfTableHeading>
       <SfTableRow
@@ -68,7 +67,7 @@
         <SfCheckbox v-e2e="'terms'" v-model="terms" name="terms" class="summary__terms">
           <template #label>
             <div class="sf-checkbox__label">
-              {{ $t('I agree to') }} <SfLink href="#"> {{ $t('Terms and conditions') }}</SfLink>
+              {{ $t('pages.checkout.payment.i_agree_to') }} <SfLink href="#"> {{ $t('pages.checkout.payment.terms_and_conditions') }}</SfLink>
             </div>
           </template>
         </SfCheckbox>
@@ -79,14 +78,14 @@
             class="sf-button color-secondary summary__back-button"
             @click="router.push(localePath('/checkout/billing'))"
           >
-            {{ $t('Go back') }}
+            {{ $t('pages.checkout.payment.go_back') }}
           </SfButton>
           <SfButton
             :disabled="loading || !isPaymentReady || !terms"
             class="summary__action-button"
             @click="processOrder"
           >
-            {{ $t('Make an order') }}
+            {{ $t('pages.checkout.payment.make_an_order') }}
           </SfButton>
         </div>
       </div>
@@ -170,7 +169,6 @@ export default {
       loading,
       products: computed(() => cartGetters.getItems(cart.value)),
       totals: computed(() => cartGetters.getTotals(cart.value)),
-      tableHeaders: ['Description', 'Size', 'Color', 'Quantity', 'Amount'],
       cartGetters,
       processOrder,
       handlePaymentChange

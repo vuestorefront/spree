@@ -31,7 +31,7 @@
       :selected="setAsDefault"
       @change="$emit('changeSetAsDefault', $event)"
       name="setAsDefault"
-      label="Use this address as my default one."
+      :label="$t('components.checkout.user_billing_address.set_as_default_address')"
       class="billing-address-setAsDefault"
     />
   </div>

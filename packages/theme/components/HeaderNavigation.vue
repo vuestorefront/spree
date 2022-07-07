@@ -20,7 +20,7 @@
         <SfList>
           <SfListItem>
             <SfMenuItem
-              label="All"
+              :label="$t('components.header_navigation.all')"
               class="sf-header-navigation-item__menu-item"
               :link="localePath(getRoute(cat))"
               @click.native="toggleMobileMenu"

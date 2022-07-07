@@ -27,10 +27,10 @@ const getSortOptions = (searchData: FacetSearchResult<SearchData>): AgnosticSort
 
   const { sort } = searchData.input;
   const options = [
-    {type: 'sort', id: 'price', value: 'Price ascending'},
-    {type: 'sort', id: '-price', value: 'Price descending'},
-    {type: 'sort', id: 'updated_at', value: 'Updated at ascending'},
-    {type: 'sort', id: '-updated_at', value: 'Updated at descending'}
+    {type: 'sort', id: 'price', value: 'composables.facet_getters.sort_price_ascending'},
+    {type: 'sort', id: '-price', value: 'composables.facet_getters.sort_price_descending'},
+    {type: 'sort', id: 'updated_at', value: 'composables.facet_getters.sort_updated_at_ascending'},
+    {type: 'sort', id: '-updated_at', value: 'composables.facet_getters.sort_updated_at_descending'}
   ];
 
   const selectedOption = options.find(option => option.id === sort);

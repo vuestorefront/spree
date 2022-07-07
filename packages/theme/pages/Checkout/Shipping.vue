@@ -3,7 +3,7 @@
     <SfHeading
       v-e2e="'shipping-heading'"
       :level="3"
-      :title="$t('Shipping')"
+      :title="$t('pages.checkout.shipping.shipping_heading')"
       class="sf-heading--left sf-heading--no-underline title"
     />
     <AddressPicker
@@ -29,7 +29,7 @@
             v-on:click="getBackToShippingDetails()"
             :class="{'disable-input': isFormSubmitted}"
             v-model="form.email"
-            label="Email"
+            :label="$t('pages.checkout.shipping.email_label')"
             name="email"
             class="form__element"
             :valid="!errors[0]"
@@ -47,7 +47,7 @@
             :class="{'disable-input': isFormSubmitted}"
             v-e2e="'shipping-firstName'"
             v-model="form.firstName"
-            label="First name"
+            :label="$t('pages.checkout.shipping.first_name_label')"
             name="firstName"
             class="form__element form__element--half"
             required
@@ -66,7 +66,7 @@
             :class="{'disable-input': isFormSubmitted}"
             v-e2e="'shipping-lastName'"
             v-model="form.lastName"
-            label="Last name"
+            :label="$t('pages.checkout.shipping.last_name_label')"
             name="lastName"
             class="form__element form__element--half form__element--half-even"
             required
@@ -85,7 +85,7 @@
             :class="{'disable-input': isFormSubmitted}"
             v-e2e="'shipping-streetName'"
             v-model="form.addressLine1"
-            label="Street name"
+            :label="$t('pages.checkout.shipping.street_label')"
             name="streetName"
             class="form__element"
             required
@@ -98,7 +98,7 @@
           :class="{'disable-input': isFormSubmitted}"
           v-e2e="'shipping-apartment'"
           v-model="form.addressLine2"
-          label="House/Apartment number"
+          :label="$t('pages.checkout.shipping.apartment_label')"
           name="apartment"
           class="form__element"
         />
@@ -113,7 +113,7 @@
             :class="{'disable-input': isFormSubmitted}"
             v-e2e="'shipping-city'"
             v-model="form.city"
-            label="City"
+            :label="$t('pages.checkout.shipping.city_label')"
             name="city"
             class="form__element"
             required
@@ -134,7 +134,7 @@
             class="form__element form form__select sf-select--underlined"
             v-model="form.state"
             name="state"
-            label="State/Province"
+            :label="$t('pages.checkout.shipping.state_label')"
             :required="isStateRequired"
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -159,7 +159,7 @@
             :class="{'disable-dropdown': isFormSubmitted}"
             v-e2e="'shipping-country'"
             v-model="form.country"
-            label="Country"
+            :label="$t('pages.checkout.shipping.country_label')"
             name="country"
             class="form__element form__element--half form__select sf-select--underlined"
             required
@@ -187,7 +187,7 @@
             :class="{'disable-input': isFormSubmitted}"
             v-e2e="'shipping-zipcode'"
             v-model="form.postalCode"
-            label="Zip-code"
+            :label="$t('pages.checkout.shipping.postal_code_label')"
             name="zipCode"
             class="form__element form__element--half form__element--half-even"
             required
@@ -206,7 +206,7 @@
             :class="{'disable-input': isFormSubmitted}"
             v-e2e="'shipping-phone'"
             v-model="form.phone"
-            label="Phone number"
+            :label="$t('pages.checkout.shipping.phone_number_label')"
             name="phone"
             class="form__element"
             required
@@ -218,14 +218,14 @@
           class="form__save-address"
           v-if="isAuthenticated && !isFormSubmitted"
           v-model="isSaveAddressSelected"
-          label="Save address"
+          :label="$t('pages.checkout.shipping.save_address_label')"
         />
       </div>
       <div class="form">
         <div class="form__action">
           <SfCheckbox
             name="shippingToBilling"
-            label="Use the same details for billing"
+            :label="$t('pages.checkout.shipping.shipping_to_billing_label')"
             hintMessage=""
             :required="false"
             infoMessage=""
@@ -242,7 +242,7 @@
             class="form__action-button"
             type="submit"
           >
-            {{ $t('Select shipping method') }}
+            {{ $t('pages.checkout.shipping.select_shipping_method') }}
           </SfButton>
         </div>
       </div>

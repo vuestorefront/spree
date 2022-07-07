@@ -17,7 +17,7 @@
             data-cy="password-reset-input_newPassword"
             v-model="form.newPassword"
             name="newPassword"
-            label="New Password"
+            :label="$t('components.my_account.password_reset_form.new_password_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
@@ -35,7 +35,7 @@
             data-cy="password-reset-input_newPasswordConfirmation"
             v-model="form.newPasswordConfirmation"
             name="newPasswordConfirmation"
-            label="New Password Confirmation"
+            :label="$t('components.my_account.password_reset_form.confirm_password_label')"
             required
             :valid="!errors[0]"
             :errorMessage="errors[0]"
