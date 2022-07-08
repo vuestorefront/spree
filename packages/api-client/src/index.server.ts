@@ -1,5 +1,6 @@
 import { apiClientFactory, ApiClientExtension } from '@vue-storefront/core';
 import { makeClient } from '@spree/storefront-api-v2-sdk';
+import createAxiosFetcher from '@spree/storefront-api-v2-sdk/dist/server/createAxiosFetcher';
 import getProduct from './api/getProduct';
 import getProducts from './api/getProducts';
 import getCategory from './api/getCategory';
@@ -62,7 +63,10 @@ const onCreate = (settings) => {
       ...defaultSettings,
       ...settings
     },
-    client: makeClient({ host: settings.backendUrl || defaultSettings.backendUrl })
+    client: makeClient({
+      host: settings.backendUrl || defaultSettings.backendUrl,
+      createFetcher: createAxiosFetcher
+    })
   };
 };
 

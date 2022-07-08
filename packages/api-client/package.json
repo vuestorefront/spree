@@ -14,7 +14,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@spree/storefront-api-v2-sdk": "^4.4.3",
+    "@spree/storefront-api-v2-sdk": "^5.1.1",
     "@vue-storefront/core": "^2.5.0"
   },
   "files": [
