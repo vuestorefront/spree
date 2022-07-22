@@ -56,6 +56,11 @@ export default {
     };
   },
 
+  mounted() {
+    const preselectedRateId = (this.shippingRates?.find((rate) => rate?.selected)?.id) ?? null;
+    this.selectRate(preselectedRateId);
+  },
+
   computed: {
     shippingRates() {
       return this.shipment.availableShippingRates;
