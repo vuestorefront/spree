@@ -231,7 +231,7 @@
             infoMessage=""
             errorMessage=""
             valid
-            :disabled="false"
+            :disabled="isFormSubmitted"
             v-model="isCopyToBillingSelected"
           />
         </div>
@@ -248,8 +248,9 @@
       </div>
       <VsfShippingProvider
         v-if="isFormSubmitted"
-        @submit="router.push(localePath({ name: 'billing' }))"
+        @submit="routeToBillingOrPayment()"
         @back="() => isFormSubmitted = !isFormSubmitted"
+        :buttonText="buttonText"
       />
     </form>
   </ValidationObserver>
@@ -302,6 +303,7 @@ export default {
     const isFormSubmitted = ref(false);
     const isSaveAddressSelected = ref(false);
     const isCopyToBillingSelected = ref(true);
+    const buttonText = ref(null);
     const { countries, states, load: loadCountries, loadStates } = useCountry();
     const { shipping: checkoutShippingAddress, load, save, loading } = useShipping();
     const { shipping: savedAddresses, load: loadSavedAddresses, addAddress } = useUserShipping();
@@ -350,7 +352,10 @@ export default {
 
       await save({ shippingDetails: shippingAddress });
       if (isCopyToBillingSelected.value) {
+        buttonText.value = 'Continue to payment';
         await billing.save({ billingDetails: shippingAddress });
+      } else {
+        buttonText.value = 'Continue to billing';
       }
 
       if (isSaveAddressSelected.value) {
@@ -369,6 +374,14 @@ export default {
     const populateSelectedAddressId = () => {
       if (checkoutShippingAddress.value && savedAddresses.value?.addresses) {
         selectedSavedAddressId.value = savedAddresses.value.addresses.find(e => isEqualAddress(e, checkoutShippingAddress.value))?._id;
+      }
+    };
+
+    const routeToBillingOrPayment = () => {
+      if (isCopyToBillingSelected.value) {
+        router.push('/checkout/payment');
+      } else {
+        router.push('/checkout/billing');
       }
     };
 
@@ -426,7 +439,9 @@ export default {
       checkoutShippingAddress,
       handleFormSubmit,
       isCopyToBillingSelected,
-      getBackToShippingDetails
+      getBackToShippingDetails,
+      routeToBillingOrPayment,
+      buttonText
     };
   }
 };

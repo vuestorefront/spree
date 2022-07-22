@@ -24,7 +24,7 @@
           type="button"
           @click="save"
         >
-          {{ $t('Continue to billing') }}
+          {{ $t(buttonText) }}
         </SfButton>
       </div>
   </div>
@@ -40,7 +40,12 @@ import ShippingRatePicker from '~/components/Checkout/ShippingRatePicker.vue';
 
 export default {
   name: 'VsfShippingProvider',
-
+  props: {
+    buttonText: {
+      type: String,
+      required: true
+    },
+  },
   components: {
     SfButton,
     ShippingRatePicker
